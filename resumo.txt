@@ -1,2 +1,5 @@
 Exercicios que serão feitos na materia de programação 1 da UFPR
 
+
+https://www.pucsp.br/~so-comp/cursoc/aulas/ca60.html#cA63 
+Algumas informações sobre alocação dinamica

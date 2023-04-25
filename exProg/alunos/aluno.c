@@ -5,15 +5,15 @@
 struct aluno {
 	char nome[80];
 	int idade;
-	float ira
-}
+	float ira;
+};
 
 
 int main ()
 {
 	struct aluno *lista;
-	int tam;
-
+	int tam = 0;
+	int cont = 0;
 	/*Determina o tamanho do vetor*/
 	scanf ("%d", &tam);
 	
@@ -22,11 +22,18 @@ int main ()
 		printf ("Erro de alocacao! \n");
 		exit (1);
 	}
-	
+
+	printf ("Endereco de llista: %p \n", &lista);	
+	printf ("Antes do realloc: %p \n", lista);
+
 	/*Novo tamanho: */
 	scanf ("%d", &tam);
 
 	lista = realloc (lista, tam*sizeof(struct aluno));
+	while (!lista){
+		cont++;
+		lista = realoc (lista, tam*sizeof(struct aluno) );	
+	}
 
 	//4?
 	//5?

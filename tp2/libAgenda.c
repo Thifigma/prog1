@@ -73,26 +73,26 @@ int validaData (struct agenda *ag, struct data *d)
 	
 	if (obtemAno(ag) == d->ano) {
 		if ( d->mes > 0 && d->mes <= 12){
-			if ( d->dia > 0 && d->dia <= v[d->mes - 1])
+			 if( d->dia > 0 && d->dia <= v[d->mes - 1] )
 				return 1;
 			else 
 				return 0;	
-		} else return 0;
-	} else return 0;
+		} else 
+			return 0;
+	} else 
+		return 0;
 }
 
 int validaHora (struct compromisso *compr)
 {
 	if (compr->hora_compr > 0 && compr->hora_compr <= 23)
 		return 1;
-	
 	return 0;
 }
 
 int verificaDisponibilidade (struct agenda *ag, struct compromisso *compr)
 {
-	if ( ag->agenda_do_ano[obtemDiaDoAno (compr->data_compr)].
-		horas[obtemHora (compr)] == 0)
+	if ( ag->agenda_do_ano[obtemDiaDoAno (compr->data_compr)].horas[obtemHora (compr)] == 0)
 		return LIVRE;
 	return OCUPADA;
 }
@@ -111,14 +111,15 @@ int leCompromisso (struct agenda *ag, struct compromisso *compr)
 			return 1;
 		else
 			return 0;	
-	} else	return 0;
+	} else	
+		return 0;
 }
 
 /*Marca o compromisso se a agenda estiver livre
  *A data ja vem validada*/
 void marcaCompromisso(struct agenda *ag, struct compromisso *compr)
 {
-	if ( !verificaDisponibilidade (ag, compr)) {
+	if ( !verificaDisponibilidade(ag, compr) ) {
 		ag->agenda_do_ano[obtemDiaDoAno (compr->data_compr)].
 		horas[obtemHora(compr)] = 1;
 		printf ("Compromisso inserido com sucesso! \n");

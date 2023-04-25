@@ -22,9 +22,8 @@ int main ()
 		printf ("Erro de alocacao! \n");
 		exit (1);
 	}
-
-	printf ("Endereco de llista: %p \n", &lista);	
-	printf ("Antes do realloc: %p \n", lista);
+	
+	printf ("Endereco antes: %p \n", lista);
 
 	/*Novo tamanho: */
 	scanf ("%d", &tam);
@@ -32,11 +31,14 @@ int main ()
 	lista = realloc (lista, tam*sizeof(struct aluno));
 	while (!lista){
 		cont++;
-		lista = realoc (lista, tam*sizeof(struct aluno) );	
+
+		scanf ("%d", &tam);
+		lista = realloc (lista, tam*sizeof(struct aluno) );	
 	}
 
-	//4?
-	//5?
+
+	printf ("Valor de chamados de realloc: %d \n", cont);
+	printf ("Endereco depois: %p \n", lista);
 
 	return 0;
 }

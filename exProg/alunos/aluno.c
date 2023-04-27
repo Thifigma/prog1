@@ -40,6 +40,8 @@ int main ()
 	printf ("Valor de chamados de realloc: %d \n", cont);
 	printf ("Endereco depois: %p \n", lista);
 
+	free (lista); 
+
 	return 0;
 }
 

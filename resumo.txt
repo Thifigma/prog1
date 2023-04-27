@@ -7,3 +7,9 @@ Algumas informações sobre alocação dinamica
 
 Tirar duvidas sobre 4 e 5 do ultimo slide de alocacao dinamica
 
+DESCRIÇÃO: 
+
+exProg - Exercicios p/ pratica. 
+
+tpN: Trabalhos a serem entregues. 
+

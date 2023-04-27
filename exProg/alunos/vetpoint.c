@@ -5,11 +5,11 @@
 struct aluno {
 	int ano;
 	int nota;
-}
+};
 
-void aloca_vetor (struct aluno *v, int n)
+struct aluno *aloca_vetor (int n)
 {
-
+	return malloc (n*sizeof(struct aluno) );
 }
 
 int main ()
@@ -23,12 +23,13 @@ int main ()
 
 	/*Retorna um endereco de memoria na heap com 
 	 *o espaco solicitado*/ 
-	aloca_vetor (v, n);
+	v = aloca_vetor (n);
 	
 	/*Como inicializar o vetor com null? */
 	/*Como atribuir os valores dentro do vetor? */
 	/*Como colocar os ponteiros dentro do vetor? */
-
+	
+	free (v);
 
 	return 0; 
 }

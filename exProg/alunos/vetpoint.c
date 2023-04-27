@@ -26,8 +26,11 @@ int main ()
 	v = aloca_vetor (n);
 	
 	/*Como inicializar o vetor com null? */
-	/*Como atribuir os valores dentro do vetor? */
-	/*Como colocar os ponteiros dentro do vetor? */
+	
+	/*Como atribuir os valores (ponteiros P/ estrutura, NULLs) ) 
+	 * dentro do vetor? */
+
+	/*Como operar esses ponteiros com essas estruturas?*/
 	
 	free (v);
 

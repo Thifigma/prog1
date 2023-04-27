@@ -11,9 +11,15 @@ struct aluno {
 
 int main ()
 {
+	/*Ponteiro para estrutura  alunos*/
 	struct aluno *lista;
+
+	/*Define o tamanho de bytes a ser buscado na heap.*/
 	int tam = 0;
+
+	/*Conta os reallocs*/
 	int cont = 0;
+	
 	/*Determina o tamanho do vetor*/
 	scanf ("%d", &tam);
 	

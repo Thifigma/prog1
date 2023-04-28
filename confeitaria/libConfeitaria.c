@@ -36,5 +36,6 @@ void pedido (struct frigobar *fb)
 		printf ("Erro de alocacao! \n");
 		exit (1);
 	}
-
+	fb.P
+}
 		

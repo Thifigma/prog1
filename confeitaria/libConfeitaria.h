@@ -7,7 +7,7 @@ struct data {
 /*sabor = M ou C e tem o ultimo /0 */
 struct bolo {
 	struct data validade;
-	char sabor[2];	
+	char sabor[2];
 };
 
 struct torta {
@@ -31,7 +31,7 @@ struct frigobar criaFrigobar ();
  ** detalhamento do pedidoDia
  *Tera variaveis locais para determinar a quantidade maxima escolhida pelo usuario
  *que sera também o N do malloc*/
-struct frigobar pedidoDoDia (struct frigobar *fb);
+void pedido (struct frigobar *fb);
 
 /*Lista a quantidade maxima de cada pratileira*/
 void ListaQuantidade (struct frigobar *fb);
@@ -42,3 +42,13 @@ struct frigobar DestroiVencidos (struct frigobar *fb);
 
 /*Destroi Frigobar*/
 void destroiFrigobar (struct frigobar *fb);
+
+
+
+
+
+
+
+
+
+//testes

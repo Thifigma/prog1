@@ -6,6 +6,8 @@ int main ()
 
 	fb = criaFrigobar ();
 
+	pedido (&fb);
+
 	return 0;
 }
 

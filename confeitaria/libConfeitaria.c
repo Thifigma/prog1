@@ -18,6 +18,7 @@ struct frigobar criaFrigobar ()
 	return fb;
 }
 
+/*O que tem de errado aqui? */
 void pedido (struct frigobar *fb)
 {
 	static int nBolo;

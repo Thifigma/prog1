@@ -13,3 +13,33 @@ exProg - Exercicios p/ pratica.
 
 tpN: Trabalhos a serem entregues. 
 
+
+Sobre operar structs dentro de funções 
+
+funcao (&x)
+	
+	para operar dentro da funcao uso *p
+
+___
+struct caixas {
+	int num;
+	char cor [2];
+}
+
+struct fileira {
+	struct caixas *v[3];
+}
+
+
+main -> struct fileira n1;
+
+	acessando na main
+
+n1->v[1]->caixas.num = 2;
+n1->v[1]->caixas.cor = v;
+
+
+[ -> ] (quando quero acessar structs  )  ?
+[  . ] (quando quero acessar variaveis)  ?
+
+______________  	

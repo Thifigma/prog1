@@ -49,7 +49,7 @@ void leCaixa (struct prateleira *p)
 	}
 }
 
-/*Por qual motivo esse programa da falha de segmentação? */
+/*Por qual motivo esse programa da falha de segmentação? :*/
 int main ()
 {
 	struct prateleira p;

@@ -9,6 +9,19 @@ struct frigobar criaFrigobar ()
 {
 	struct frigobar fb; 
 
+	*fb.Pcima = malloc (20*sizeof(struct torta));
+	if (!fb.Pcima){
+		printf ("Erro de alocação! \n");
+		exit (1);
+	}
+
+	*fb.Pbaixo = malloc (10*sizeof(struct bolo));
+	if (!fb.Pbaixo){
+		printf ("Erro de alocação! \n");
+		exit (1);
+	}
+
+    /*Todo espaco recebido pelo malloc é NULLADO*/
 	for (int i = 0; i < 20; i++)
 		fb.Pcima[i] = NULL;
 
@@ -18,27 +31,35 @@ struct frigobar criaFrigobar ()
 	return fb;
 }
 
-/*O que tem de errado aqui? */
 void pedido (struct frigobar *fb)
 {
-	static int nBolo;
-	static int nTorta;
+	static int nBolo = 0;
+	static int nTorta = 0;
 
-	printf ("Quantidade Bolo: ");
+/*Leitura da quantidade de bolo*/
+
 	scanf ("%d", &nBolo);
-	printf ("Quantidade Torta: ");
-	scanf ("%d", &nTorta);
-
-	*fb->Pcima  = malloc( nBolo*sizeof(struct bolo) );
-
-	for (int i = 0; i < nBolo; i++){
-		printf ("Sabor: \n");
-		scanf (" %c", &fb->Pcima[i]->sabor[2]);
-		printf ("Dia: ");
-		scanf ("%d", &fb->Pcima[i]->validade.dia);
+	while (nBolo > 20){
+		printf ("Erro! nBolo > 20, tente novamente! \n");
+		scanf ("%d", &nBolo);
+	}
+	*fb->Pcima = malloc (nBolo*sizeof(struct bolo));
+	if (!fb->Pcima){
+		printf ("Erro de alocacao! \n");
+		exit (1);
 	}
 
-	*fb->Pbaixo = malloc( nTorta*sizeof(struct torta) );
+	/*Leitura da quantidade de torta*/
 
+	scanf ("%d", &nTorta);
+		while (nTorta > 10){
+		printf ("Erro! nTorta > 10, tente novamente! \n");
+		scanf ("%d", &nTorta);
+	}
 
+	*fb->Pbaixo = malloc (nTorta*sizeof(struct torta));
+	if (!fb->Pbaixo){
+		printf ("Erro de alocacao! \n");
+		exit (1);
+	}
 }

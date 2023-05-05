@@ -21,7 +21,7 @@ struct frigobar {
 
 /*Deve criar um frigobar vazio. Recebe como parametro
  * o endereco de uma struct frigobar */
-struct frigobar criaFrigobar ();
+struct frigobar *criaFrigobar ();
 
 /*Deve receber como parametro um frigobar vazio.
  *em seguida fara a letura da quantidade de bolos de pote

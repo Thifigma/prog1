@@ -5,15 +5,19 @@
 
 /*Retorna um frigobar com as prateleiras de cima e de baixo
  * Iniciado com NULL em todas as posicoes*/
-struct frigobar criaFrigobar ()
+struct frigobar *criaFrigobar ()
 {
-	struct frigobar fb; 
+	int aleatoria = 0;
+	struct frigobar *fb; 
+	scanf("%d", &aleatoria);
 
+	fb = malloc (sizeof(struct frigobar));
+	
 	for (int i = 0; i < 20; i++)
-		fb.Pcima[i] = NULL;
-
+		fb->Pcima[i] = NULL;
+	
 	for (int i = 0; i < 10; i++)
-		fb.Pbaixo[i] = NULL;
+		fb->Pbaixo[i] = NULL;
 
 	return fb;
 }
@@ -29,7 +33,8 @@ void pedido (struct frigobar *fb)
 	printf ("Quantidade Torta: ");
 	scanf ("%d", &nTorta);
 
-	*fb->Pcima  = malloc( nBolo*sizeof(struct bolo) );
+	for (int i= 0; i < nBolo; i++)
+		fb->Pcima[i]  = malloc(sizeof(struct bolo) );
 
 	for (int i = 0; i < nBolo; i++){
 		printf ("Sabor: \n");
@@ -38,7 +43,7 @@ void pedido (struct frigobar *fb)
 		scanf ("%d", &fb->Pcima[i]->validade.dia);
 	}
 
-	*fb->Pbaixo = malloc( nTorta*sizeof(struct torta) );
-
+	for (int i= 0; i < nTorta; i++)	
+		fb->Pbaixo[i] = malloc( nTorta*sizeof(struct torta) );
 
 }

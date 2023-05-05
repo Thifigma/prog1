@@ -7,9 +7,7 @@
  * Iniciado com NULL em todas as posicoes*/
 struct frigobar *criaFrigobar ()
 {
-	int aleatoria = 0;
 	struct frigobar *fb; 
-	scanf("%d", &aleatoria);
 
 	fb = malloc (sizeof(struct frigobar));
 	
@@ -35,13 +33,6 @@ void pedido (struct frigobar *fb)
 
 	for (int i= 0; i < nBolo; i++)
 		fb->Pcima[i]  = malloc(sizeof(struct bolo) );
-
-	for (int i = 0; i < nBolo; i++){
-		printf ("Sabor: \n");
-		scanf (" %c", &fb->Pcima[i]->sabor[2]);
-		printf ("Dia: ");
-		scanf ("%d", &fb->Pcima[i]->validade.dia);
-	}
 
 	for (int i= 0; i < nTorta; i++)	
 		fb->Pbaixo[i] = malloc( nTorta*sizeof(struct torta) );

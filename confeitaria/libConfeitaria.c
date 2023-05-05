@@ -37,4 +37,13 @@ void pedido (struct frigobar *fb)
 	for (int i= 0; i < nTorta; i++)	
 		fb->Pbaixo[i] = malloc( nTorta*sizeof(struct torta) );
 
+	lePedido (fb, nBolo, nTorta);
+}
+
+void lePedido (struct frigobar *fb, int nBolo, int nTorta)
+{
+	for (int i = 0; i < nBolo; i++){
+		printf ("Sabor bolo (%d): ", i);
+		scanf (" %c", &fb->Pcima[i]->sabor[2]);
+	}
 }

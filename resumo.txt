@@ -17,7 +17,7 @@ tpN: Trabalhos a serem entregues.
 Sobre operar structs dentro de funções 
 
 funcao (&x)
-	
+no prototoipo funcao (**p)
 	para operar dentro da funcao uso *p
 
 ___

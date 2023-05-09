@@ -2,11 +2,11 @@
 
 int main ()
 {
-	struct frigobar fb;
+	struct frigobar *fb;
 
 	fb = criaFrigobar ();
 
-	pedido (&fb);
+	pedido (fb);
 
 	return 0;
 }

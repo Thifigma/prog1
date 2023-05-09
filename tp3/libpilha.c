@@ -31,6 +31,8 @@ int push (pilha_t *pilha, int dado)
     pilha->topo = aux;
     if (!pilha->topo)
         return 1;
+    else
+        return 0;
     
 }
 

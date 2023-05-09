@@ -43,7 +43,9 @@ void pedido (struct frigobar *fb)
 void lePedido (struct frigobar *fb, int nBolo, int nTorta)
 {
 	for (int i = 0; i < nBolo; i++){
-		printf ("Sabor bolo (%d): ", i);
+		printf ("Sabor | bolo(%d): ", i);
 		scanf (" %c", &fb->Pcima[i]->sabor[2]);
+		printf ("_________validade_________\n");
+		printf ("Dia: \n")
 	}
 }

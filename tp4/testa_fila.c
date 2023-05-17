@@ -64,43 +64,46 @@ int main (void)
     teste_fila_vazia (f);
     printf ("\n\n");
 
-    // printf ("Teste 2: tenta desenfileirar elemento com fila vazia:\n");
-    // printf ("Esperado: nao pode ter dado segfault\n");
-    // if (! dequeue (f, &dado))
-    //     printf ("\tOK: dequeue na fila vazia nao deu segfault.\n");
-    // printf ("\n\n");
+    /* 
+    printf ("Teste 2: tenta desenfileirar elemento com fila vazia:\n");
+    printf ("Esperado: nao pode ter dado segfault\n");
+    if (! dequeue (f, &dado))
+        printf ("\tOK: dequeue na fila vazia nao deu segfault.\n");
+    printf ("\n\n");
 
-    // printf ("Teste 3: inserir 5 elementos:\n");
-    // printf ("Esperado: tem que mostrar enfileirar de 11 ate 15\n");
-    // printf ("          o tamanho tem que terminar com valor 5\n");
-    // printf ("          E a fila NAO PODE estar vazia\n");
-    // teste_enqueue (f, MAX); 
-    // teste_fila_vazia (f);
-    // printf ("\n\n");
+    printf ("Teste 3: inserir 5 elementos:\n");
+    printf ("Esperado: tem que mostrar enfileirar de 11 ate 15\n");
+    printf ("          o tamanho tem que terminar com valor 5\n");
+    printf ("          E a fila NAO PODE estar vazia\n");
+    teste_enqueue (f, MAX); 
+    teste_fila_vazia (f);
+    printf ("\n\n");
 
-    // printf ("Teste 4: esvaziar a fila:\n");
-    // printf ("Esperado: tem que mostrar desenfileirar de 11 ate 15\n");
-    // printf ("          o tamanho tem que terminar com valor 0\n");
-    // printf ("          E a fila tem que estar vazia\n");
-    // teste_dequeue (f); 
-    // teste_fila_vazia (f);
-    // printf ("\n\n");
+    printf ("Teste 4: esvaziar a fila:\n");
+    printf ("Esperado: tem que mostrar desenfileirar de 11 ate 15\n");
+    printf ("          o tamanho tem que terminar com valor 0\n");
+    printf ("          E a fila tem que estar vazia\n");
+    teste_dequeue (f); 
+    teste_fila_vazia (f);
+    printf ("\n\n");
 
-    // printf ("Teste 5: destruir uma fila vazia:\n");
-    // printf ("Esperado: nao pode ter leak (conferir com valdrind)\n");
-    // printf ("          E nao pode ter segfault\n");
-    // fila_destroi (&f);
-    // printf ("\n\n");
+    printf ("Teste 5: destruir uma fila vazia:\n");
+    printf ("Esperado: nao pode ter leak (conferir com valdrind)\n");
+    printf ("          E nao pode ter segfault\n");
+    fila_destroi (&f);
+    printf ("\n\n");
 
-    // printf ("Teste 6: destruir uma fila com elementos:\n");
-    // printf ("Esperado: nao pode ter leak (conferir com valdrind)\n");
-    // printf ("          E nao pode ter segfault\n");
-    // f = fila_cria ();
-    // if (enqueue (f, 1) && enqueue (f, 2) && enqueue (f, 3))
-    //     fila_destroi (&f);
-    // else
-    //     printf ("Falha na alocação dos elementos!!!");
-    // printf ("\n\n");
+    printf ("Teste 6: destruir uma fila com elementos:\n");
+    printf ("Esperado: nao pode ter leak (conferir com valdrind)\n");
+    printf ("          E nao pode ter segfault\n");
+    f = fila_cria ();
+    if (enqueue (f, 1) && enqueue (f, 2) && enqueue (f, 3))
+        fila_destroi (&f);
+    else
+        printf ("Falha na alocação dos elementos!!!");
+    printf ("\n\n"); 
+    
+    */
 
     return 0;
 }

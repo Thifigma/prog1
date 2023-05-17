@@ -21,7 +21,7 @@ void pilha_destroi (pilha_t **pilha)
     nodo_t *aux;
 
     /*O laco inicia com o topo atualizado*/
-    while ( (*pilha)->topo != NULL ) {
+    while ( (*pilha)->topo ) {
         aux = (*pilha)->topo; /*Guarda o topo atual*/
         (*pilha)->topo = (*pilha)->topo->prox; /*atualiza o topo*/
         free (aux);
@@ -49,9 +49,6 @@ int push (pilha_t *pilha, int dado)
 int pop (pilha_t *pilha, int *dado)
 {
     nodo_t *aux;
-    aux = malloc (sizeof(nodo_t));
-    if (!aux)
-        return 0;
 
     if (!pilha_vazia(pilha)){
         aux = pilha->topo->prox; /*Guarda o topo anterior*/
@@ -59,7 +56,7 @@ int pop (pilha_t *pilha, int *dado)
         free (pilha->topo); /*remove o topo atual*/
         pilha->tamanho--;
         pilha->topo = aux; /*Atualiza com o topo anterior*/
-        
+
         return 1;
     }
 
@@ -71,7 +68,8 @@ int pilha_topo (pilha_t *pilha, int *dado)
     if (!pilha->topo){
         return 0;
     }
-
+    
+    /*Salva o dado no parametro fornecido*/
     *dado = pilha->topo->dado;
     
     return 1;

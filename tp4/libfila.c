@@ -4,23 +4,22 @@
 
 fila_t *fila_cria ()
 {
-    fila_t *f;
+    fila_t *fila;
 
-    f = malloc (sizeof(fila_t));
-    if (!f)
+    fila = malloc (sizeof(fila_t));
+    if (!fila)
         return NULL;
 
-    f->cabeca = NULL;
-    f->cauda = NULL;
-    f->tamanho = 0;
+    fila->cabeca = NULL;
+    fila->cauda = NULL;
+    fila->tamanho = 0;
 
-    return f;
+    return fila;
 }
 
 void fila_destroi (fila_t **fila)
 {
     nodo_t *aux;
-
 
     while ((*fila)->cabeca != NULL){
         aux = (*fila)->cabeca; /*Salva a cabeca*/
@@ -43,7 +42,6 @@ int enqueue (fila_t *fila, int dado)
     aux->prox = fila->cauda;
     fila->cauda = aux;
     fila->tamanho++;
-    /*fila->cabeca->prox = fila->cauda*/
 
     return 1;
 }
@@ -51,9 +49,6 @@ int enqueue (fila_t *fila, int dado)
 int dequeue (fila_t *fila, int *dado)
 {
     nodo_t *aux;
-    aux = malloc (sizeof(nodo_t));
-    if (!aux)
-        return 0;
     
     if ( !fila_vazia(fila) ){
         *dado = fila->cabeca->dado;
@@ -76,7 +71,7 @@ int fila_tamanho (fila_t *fila)
 
 int fila_vazia (fila_t *fila)
 {
-    if ( (!fila->cabeca)  && (!fila->cabeca) )
-        return 0;
-    return 1;
+    if ( (!fila->cabeca) && (!fila->cauda) )
+        return 1;
+    return 0;
 }

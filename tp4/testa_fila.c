@@ -90,7 +90,6 @@ int main (void)
     teste_fila_vazia (f);
     printf ("\n\n");
 
-    /*
     printf ("Teste 5: destruir uma fila vazia:\n");
     printf ("Esperado: nao pode ter leak (conferir com valdrind)\n");
     printf ("          E nao pode ter segfault\n");
@@ -106,8 +105,6 @@ int main (void)
     else
         printf ("Falha na alocação dos elementos!!!");
     printf ("\n\n"); 
-    
-    */
 
     return 0;
 }

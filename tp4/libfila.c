@@ -1,6 +1,4 @@
-/* #include <stddef.h>  */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include "libfila.h"
 
@@ -8,9 +6,8 @@ fila_t *fila_cria()
 {
     fila_t *fila;
 
-    fila = malloc(sizeof(fila_t));
-    if (!fila)
-        return NULL;
+    if (!(fila = malloc(sizeof(fila_t))))
+        return 0;
 
     fila->cabeca = NULL;
     fila->cauda = NULL;
@@ -23,35 +20,37 @@ void fila_destroi(fila_t **fila)
 {
     nodo_t *aux;
 
-    while ((*fila)->cabeca != NULL)
-    {
-        aux = (*fila)->cabeca;                   /*Salva a cabeca*/
-        (*fila)->cabeca = (*fila)->cabeca->prox; /*vai em direcao a cauda*/
+    /*Anda na fila em direção a cauda e
+     *vai removendo ate ser null*/
+    while (!(fila_vazia((*fila)))){
+        aux = (*fila)->cabeca;
+        (*fila)->cabeca = (*fila)->cabeca->prox;
+        (*fila)->tamanho--;
         free(aux);
     }
 
     free((*fila));
-    *fila = NULL;
+    (*fila) = NULL;
 }
 
 int enqueue(fila_t *fila, int dado)
 {
     nodo_t *aux;
-    aux = malloc(sizeof(nodo_t));
-    if (!aux)
+    if (!(aux = malloc(sizeof(nodo_t))))
         return 0;
 
     aux->dado = dado;
     aux->prox = NULL;
 
-    if (fila_vazia(fila))
-    {
+    /*Primeiro elemento da fila*/
+    if (fila_vazia(fila)){
         fila->cabeca = aux;
         fila->cauda = aux;
-        return 1;
     }
 
+    /*Torna o proximo elemento o ultimo da fila*/
     fila->cauda->prox = aux;
+    fila->cauda = fila->cauda->prox;
     fila->tamanho++;
 
     return 1;
@@ -60,26 +59,22 @@ int enqueue(fila_t *fila, int dado)
 int dequeue(fila_t *fila, int *dado)
 {
     nodo_t *aux;
-    if (!(aux = malloc(sizeof(nodo_t))))
+
+    if (fila_vazia(fila))
         return 0;
 
     *dado = fila->cabeca->dado;
 
-    if (fila_vazia(fila))
-    {
-        aux = fila->cabeca->prox;
-        fila->cabeca = aux;
-        free(fila->cabeca);
-        fila->tamanho--;
-
-        return 1;
-    }
-    else
-    {
-
-    }
-
-    return 0;
+    /*Remove o primeiro da fila 
+    * e salva o anterior a ele*/
+    aux = fila->cabeca->prox;
+    free(fila->cabeca);
+    
+    /*Torna o anterior o primeiro. */
+    fila->cabeca = aux;
+    fila->tamanho--;
+    
+    return 1;
 }
 
 int fila_tamanho(fila_t *fila)
@@ -89,7 +84,7 @@ int fila_tamanho(fila_t *fila)
 
 int fila_vazia(fila_t *fila)
 {
-    if ((!fila->cabeca))
+    if (!(fila->cabeca))
         return 1;
     return 0;
 }

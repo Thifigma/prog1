@@ -6,18 +6,16 @@ LDFLAGS = -lm
 CC = gcc
 
 # arquivos-objeto
-	objects = testa_pilha.o libpilha.o 
+	objects = parenteses.o libpilha.o 
      
-all: testa_pilha.o libpilha.o
-	$(CC) -o testa_pilha testa_pilha.o libpilha.o $(LDFLAGS)
+all: parenteses.o libpilha.o
+	$(CC) -o parenteses parenteses.o libpilha.o $(LDFLAGS)
 
 libpilha.o: libpilha.c
 	$(CC) -c $(CFLAGS) libpilha.c
 
-testa_pilha.o: testa_pilha.c
-	$(CC) -c $(CFLAGS) testa_pilha.c
+parenteses.o: parenteses.c
+	$(CC) -c $(CFLAGS) parenteses.c
 
 clean:
-	rm -f $(objects) testa_pilha
-
-
+	rm -f $(objects) parenteses

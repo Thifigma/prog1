@@ -20,7 +20,7 @@ void pilha_destroi (pilha_t **pilha)
 {
     nodo_t *aux;
 
-    /*O laco inicia com o topo atualizado*/
+    /* laco inicia com o topo atualizado*/
     while ( (*pilha)->topo ) {
         aux = (*pilha)->topo; /*Guarda o topo atual*/
         (*pilha)->topo = (*pilha)->topo->prox; /*atualiza o topo*/

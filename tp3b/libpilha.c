@@ -1,3 +1,4 @@
+#include <stddef.h>
 #include <stdlib.h>
 #include "libpilha.h"
 
@@ -24,33 +25,24 @@ void pilha_destroi (pilha_t **pilha)
         aux = (*pilha)->topo; /*Guarda o topo atual*/
         (*pilha)->topo = (*pilha)->topo->prox; /*atualiza o topo*/
         free (aux);
-
-        (*pilha)->tamanho--;
     }
 
     free ((*pilha));
-    (*pilha) = NULL;
+    *pilha = NULL;
 }
 
 int push (pilha_t *pilha, int dado)
 {
     nodo_t *aux;
-    if (!(aux = malloc(sizeof(nodo_t))))
+    aux = malloc (sizeof(nodo_t));
+    if (!aux)
         return 0;
-    
-    /*Cria um novo item*/
+
     aux->dado = dado;
-    aux->prox = pilha->topo;
-
-    /*Primeiro apontamento de item*/
-    if (pilha_vazia(pilha)){
-        pilha->topo = aux;
-    }
-
-    /*Empilhamento*/
-    pilha->topo = aux;
+    aux->prox = pilha->topo; /*Guarda o nodo atual*/
     pilha->tamanho++;
-
+    pilha->topo = aux; /*Inclui novo nodo*/
+    
     return 1;
 }
 
@@ -58,36 +50,35 @@ int pop (pilha_t *pilha, int *dado)
 {
     nodo_t *aux;
 
-    if (pilha_vazia(pilha))
-        return 0;
+    if (!pilha_vazia(pilha)){
+        aux = pilha->topo->prox; /*Guarda o topo anterior*/
+        *dado = pilha->topo->dado;
+        free (pilha->topo); /*remove o topo atual*/
+        pilha->tamanho--;
+        pilha->topo = aux; /*Atualiza com o topo anterior*/
 
-    *dado = pilha->topo->dado;
-    
-    /*Salva o topo anterior e 
-    *aloca o novo topo*/
-    aux = pilha->topo->prox;
-    free(pilha->topo);
-    pilha->topo = aux;
-    pilha->tamanho--;
+        return 1;
+    }
 
-    return 1;
+    return 0;
 }
 
 int pilha_topo (pilha_t *pilha, int *dado)
 {
-    if (pilha_vazia(pilha))
+    if (!pilha->topo){
         return 0;
+    }
     
+    /*Salva o dado no parametro fornecido*/
     *dado = pilha->topo->dado;
-
+    
     return 1;
 }
 
 int pilha_vazia (pilha_t *pilha)
 {
-    if (!(pilha->topo))
+    if (!pilha->topo)
         return 1;
-
     return 0;
 }
 

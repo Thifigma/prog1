@@ -5,8 +5,7 @@ pilha_t *pilha_cria ()
 {
     pilha_t *p;
 
-    p = malloc (sizeof(pilha_t));
-    if (!p)
+    if (!(p = malloc (sizeof(pilha_t))))
         return NULL;
     
     p->topo = NULL;
@@ -20,11 +19,10 @@ void pilha_destroi (pilha_t **pilha)
     nodo_t *aux;
 
     /* laco inicia com o topo atualizado*/
-    while ( (*pilha)->topo ) {
+    while ((*pilha)->topo ){
         aux = (*pilha)->topo; /*Guarda o topo atual*/
         (*pilha)->topo = (*pilha)->topo->prox; /*atualiza o topo*/
         free (aux);
-
         (*pilha)->tamanho--;
     }
 

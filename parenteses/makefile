@@ -1,6 +1,6 @@
 # Makefile de exemplo (Manual do GNU Make)
      
-CFLAGS = -Wall -g # flags de compilacao
+CFLAGS = -Wall -std=c90 -g  # flags de compilacao
 LDFLAGS = -lm
 
 CC = gcc
@@ -11,11 +11,13 @@ CC = gcc
 all: parenteses.o libpilha.o
 	$(CC) -o parenteses parenteses.o libpilha.o $(LDFLAGS)
 
-libpilha.o: libpilha.c
-	$(CC) -c $(CFLAGS) libpilha.c
-
 parenteses.o: parenteses.c
 	$(CC) -c $(CFLAGS) parenteses.c
 
+libpilha.o: libpilha.c
+	$(CC) -c $(CFLAGS) libpilha.c
+
 clean:
 	rm -f $(objects) parenteses
+
+

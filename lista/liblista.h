@@ -43,6 +43,11 @@ typedef struct lista {
 */
 lista_t *lista_cria ();
 
+/*
+ * Retorna 1 se VAZIA e 0 caso contrario
+*/
+int lista_vazia (lista_t **l);
+
 /* 
  * Destroi a Lista e a aponta para NULL
 */ 

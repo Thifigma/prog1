@@ -45,12 +45,48 @@ int lista_insere_ordenado (lista_t *l, elemento_t *elemento)
         l->ini->prox = novo->prox;
     }
 
+    /*Caminhar na lista*/
     aux = l->ini;
-    while (aux->prox && elemento->chave < aux->elemento->chave){
-        
-    }
+    while (aux->prox && novo->elemento->chave > aux->elemento->chave)
+        aux = aux->prox;
     
+    /*Insere ordenado. */
+    aux->elemento = novo->elemento;
+    aux->prox = novo->prox;
+    return 1;
+}
 
+int lista_remove_ordenado (lista_t *l, elemento_t *elemento)
+{
+    nodo_t *atual;
+    nodo_t *aux;
+
+
+
+    if (lista_vazia(l))
+        return 0;
+
+    if (l->ini->elemento->chave == elemento->chave){
+        
+        /*Se tiver apenas um elemento na lista, 
+        *remove e aponta o inicio da lista para NULL*/
+        if (!(l->ini->prox)){
+            free(l->ini);
+            l->ini = NULL;
+            return 1;
+        }
+
+        aux = l->ini;
+        l->ini = l->ini->prox;
+        free(aux);
+        return 1;
+    }
+
+    atual = l->ini;
+    while (atual->prox && elemento->chave != atual->elemento->chave)
+        atual = atual->prox;
+
+       
 
 
 }

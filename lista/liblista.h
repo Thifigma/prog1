@@ -35,7 +35,7 @@ typedef struct nodo {
  * Representacao da Lista 
 */
 typedef struct lista {
-    nodo_t *ini;
+nodo_t *ini;
 } lista_t;
 
 /* 

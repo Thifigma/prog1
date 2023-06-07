@@ -51,7 +51,7 @@ int lista_vazia (lista_t **l);
 /* 
  * Destroi a Lista e a aponta para NULL
 */ 
-void lista_destroi (lista_t **l);
+int lista_destroi (lista_t **l);
 
 /* 
  * Adiciona um elemento em ordem de acordo com o valor elemento->chave na Lista. 

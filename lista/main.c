@@ -11,27 +11,65 @@ void menu ()
     printf ("-------------------------\n");
 }
 
+/*Retorna 1 se lista estiver sido criada corretamente e estiver vazia
+ *retorna 0 caso contrario. */
+int testa_lista_cria (lista_t *l)
+{
+    if (!(l->ini)){
+        if (lista_vazia(&l))
+            return 1;
+        else
+            return 0;
+    }
+
+    return 0;
+}
 
 int main() {
     lista_t *l;
     elemento_t *elemento;
     int op;
+    int escolha;
+
+    printf ("Testando lista_cria! \n");
+    l = lista_cria();
+    if (testa_lista_cria(l))
+        printf ("Lista criada com sucesso! \n");
+    else{
+        printf ("Erro ao criar fila! \n");
+        return 0;
+    }
+
 
     menu ();
     scanf ("%d", &op);
 
-    switch (op){
-        case 1:
+    while (op){
+        switch (op){
+            case 1:
+                printf ("Elemento inserido com sucesso! \n");
+            break;
 
-        break;
+            case 2:
+                printf ("Elemento removido com sucesso! \n");
+            break;
 
-        case 2:
+            case 3:
+                if (lista_destroi (&l))
+                    printf ("Lista destruida com sucesso! \n");
+                else
+                    printf ("Lista vazia, nao ha o que destruir... \n");
+            break;
+        }
 
-        break;
+        printf ("Deseja continuar? 1 para sim e 0 para nao! \n");
+        scanf ("%d", &escolha);
 
-        case 3:
-
-        break;
+        if (escolha){
+            menu ();
+            scanf ("%d", &op);
+        } else 
+            return 0;
     }
     return 0;
 }

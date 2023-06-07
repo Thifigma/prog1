@@ -22,10 +22,32 @@ int lista_vazia (lista_t **l)
     return 0;
 }
 
+void lista_destroi (lista_t **l)
+{
+    nodo_t *prox;
+    nodo_t *atual;
+
+    if (lista_vazia(&(*l)))
+        return;
+
+    atual = (*l)->ini;
+    while (atual){
+        prox = atual->prox;
+
+        free(atual->elemento);
+        free(atual);
+        atual = prox;
+    }
+
+    free ((*l));
+    (*l) = NULL;
+}
+
 int lista_insere_ordenado (lista_t *l, elemento_t *elemento)
 {
     nodo_t *novo;
     nodo_t *aux;
+    nodo_t *atual;
 
     if (!(novo = malloc(sizeof(nodo_t))))
         return 0;
@@ -39,20 +61,22 @@ int lista_insere_ordenado (lista_t *l, elemento_t *elemento)
 
 
     /*Verifica se vai ser o primeiro elemento a ser inserido. */
-    if (lista_vazia(l))
+    if (lista_vazia(&l))
     {
         l->ini->elemento = novo->elemento;
         l->ini->prox = novo->prox;
     }
 
     /*Caminhar na lista*/
-    aux = l->ini;
-    while (aux->prox && novo->elemento->chave > aux->elemento->chave)
-        aux = aux->prox;
-    
+    atual = l->ini;
+    while (atual->prox && atual->elemento->chave < elemento->chave){
+        aux = atual;
+        atual = atual->prox;
+    }
     /*Insere ordenado. */
-    aux->elemento = novo->elemento;
-    aux->prox = novo->prox;
+    aux->prox = novo;
+    novo->prox = atual;
+
     return 1;
 }
 
@@ -61,9 +85,7 @@ int lista_remove_ordenado (lista_t *l, elemento_t *elemento)
     nodo_t *atual;
     nodo_t *aux;
 
-
-
-    if (lista_vazia(l))
+    if (lista_vazia(&l))
         return 0;
 
     if (l->ini->elemento->chave == elemento->chave){
@@ -86,7 +108,8 @@ int lista_remove_ordenado (lista_t *l, elemento_t *elemento)
     while (atual->prox && elemento->chave != atual->elemento->chave)
         atual = atual->prox;
 
-       
-
-
+    aux = atual->prox;
+    atual = atual->prox->prox;
+    free(aux);
+    return 1;
 }

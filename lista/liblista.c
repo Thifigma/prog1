@@ -7,8 +7,10 @@ lista_t *lista_cria ()
 {
     lista_t *l;
 
-    if (!(l = malloc(sizeof(lista_t))))
+    if (!(l = malloc(sizeof(lista_t)))){
+        printf ("Erro de alocacao! \n");
         return NULL;
+    }
 
     l->ini = NULL;
 
@@ -43,4 +45,25 @@ int lista_destroi (lista_t **l)
     (*l) = NULL;
 
     return 1;
+}
+
+int lista_insere_ordenado (lista_t *l, elemento_t *elemento)
+{
+    nodo_t *novo;
+
+    if (!(novo = malloc(sizeof(nodo_t))))
+        return 0;
+
+    /*Iniica o novo nodo*/
+    novo->elemento = elemento;
+    novo->prox = NULL;
+
+
+    /*Insere o primeiro elemento no inicio da lista*/
+    if (lista_vazia(&l)){
+        l->ini = novo;
+        return 1;
+    }
+
+    return 0;
 }

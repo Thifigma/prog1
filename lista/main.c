@@ -27,7 +27,12 @@ int testa_lista_cria (lista_t *l)
 
 int main() {
     lista_t *l;
-    elemento_t *elemento;
+    elemento_t *elemento = malloc (sizeof(elemento_t));
+    if (!(elemento)){
+      printf ("Erro ao alocar memoria ao elemento. \n");
+      return 0;
+    }    
+    
     int op;
     int escolha;
 
@@ -47,7 +52,16 @@ int main() {
     while (op){
         switch (op){
             case 1:
-                printf ("Elemento inserido com sucesso! \n");
+                
+                printf ("Leia a chave do elemento: ");
+                scanf ("%d", &elemento->chave);
+
+                if (lista_insere_ordenado(l, elemento))
+                    printf ("Elemento inserido com sucesso! \n");
+                else
+                    printf ("Erro ao Inserir elemento... \n");    
+            
+            
             break;
 
             case 2:

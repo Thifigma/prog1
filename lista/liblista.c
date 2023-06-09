@@ -5,9 +5,9 @@
 
 lista_t *lista_cria ()
 {
-    lista_t *l;
+    lista_t *l = malloc(sizeof(lista_t));
 
-    if (!(l = malloc(sizeof(lista_t)))){
+    if (!(l)){
         printf ("Erro de alocacao! \n");
         return NULL;
     }
@@ -49,9 +49,10 @@ int lista_destroi (lista_t **l)
 
 int lista_insere_ordenado (lista_t *l, elemento_t *elemento)
 {
-    nodo_t *novo;
+    nodo_t *novo = malloc (sizeof(nodo_t));
+    nodo_t *aux;
 
-    if (!(novo = malloc(sizeof(nodo_t))))
+    if (!(novo ))
         return 0;
 
     /*Iniica o novo nodo*/
@@ -65,5 +66,60 @@ int lista_insere_ordenado (lista_t *l, elemento_t *elemento)
         return 1;
     }
 
-    return 0;
+    /*Verificar em qual posição da lista 
+    a chave deve ser inserida */
+    aux = l->ini;
+    while (aux->prox && aux->elemento->chave < elemento->chave)
+        aux = aux->prox;
+    
+    novo->prox = aux->prox;
+    aux->prox = novo;
+
+    free (novo);
+
+    return 1;
+}
+
+int lista_remove_ordenado (lista_t *l, elemento_t *elemento)
+{
+    nodo_t *aux;
+    nodo_t *remover;
+
+    if (lista_vazia(&l)){
+        printf ("Lista vazia! \n");
+        return 0;
+    }
+
+    aux = l->ini;
+    while (aux->prox && aux->elemento->chave != elemento->chave)
+        aux = aux->prox;
+    
+    if (!(aux->prox)){
+        printf ("Elemento nao esta na lista. \n");
+        return 0;
+    }
+    
+    remover = aux;
+    aux->prox = aux->prox->prox;
+
+    free(remover->elemento);
+    free (remover); 
+
+    return 1;
+}
+
+void mostrar_lista (lista_t *l)
+{
+    nodo_t *aux = l->ini;
+
+    if (lista_vazia(&l)){
+        printf ("Lista vazia! \n");
+        return;
+    }
+
+    while (aux){
+        printf ("Chaves: %d ", l->ini->elemento->chave);
+        aux = aux->prox;
+    }
+    printf ("\n");
 }

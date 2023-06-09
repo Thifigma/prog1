@@ -8,6 +8,8 @@ void menu ()
     printf ("1. Inserir\n");
     printf ("2. Remover\n");
     printf ("3. Destruir\n");
+    printf ("4. Mostrar\n");
+    printf ("0. Sair\n");
     printf ("-------------------------\n");
 }
 
@@ -34,7 +36,6 @@ int main() {
     }    
     
     int op;
-    int escolha;
 
     printf ("Testando lista_cria! \n");
     l = lista_cria();
@@ -65,7 +66,12 @@ int main() {
             break;
 
             case 2:
-                printf ("Elemento removido com sucesso! \n");
+
+                printf ("Leia a chave do elemento a ser  removido: ");
+                scanf ("%d", &elemento->chave);
+
+                if (lista_remove_ordenado(l, elemento))
+                    printf ("Elemento removido com sucesso! \n");
             break;
 
             case 3:
@@ -74,16 +80,17 @@ int main() {
                 else
                     printf ("Lista vazia, nao ha o que destruir... \n");
             break;
+        
+            case 4:
+                mostrar_lista (l);
+            break;
+
+            case 0:
+                printf ("Saindo... \n");
+            break;
         }
-
-        printf ("Deseja continuar? 1 para sim e 0 para nao! \n");
-        scanf ("%d", &escolha);
-
-        if (escolha){
             menu ();
             scanf ("%d", &op);
-        } else 
-            return 0;
     }
     return 0;
 }

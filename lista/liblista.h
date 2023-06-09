@@ -64,3 +64,6 @@ int lista_insere_ordenado (lista_t *l, elemento_t *elemento);
  * Retorna 1 em caso de sucesso e 0 caso elemento nao esteja na Lista.
 */
 int lista_remove_ordenado (lista_t *l, elemento_t *elemento);
+
+/*Mostra lista*/
+void mostrar_lista (lista_t *l);

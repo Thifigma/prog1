@@ -107,19 +107,3 @@ int lista_remove_ordenado (lista_t *l, elemento_t *elemento)
 
     return 1;
 }
-
-void mostrar_lista (lista_t *l)
-{
-    nodo_t *aux = l->ini;
-
-    if (lista_vazia(&l)){
-        printf ("Lista vazia! \n");
-        return;
-    }
-
-    while (aux){
-        printf ("Chaves: %d ", l->ini->elemento->chave);
-        aux = aux->prox;
-    }
-    printf ("\n");
-}

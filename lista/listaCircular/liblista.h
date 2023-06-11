@@ -23,19 +23,21 @@ typedef struct elemento {
 
 /*
  * nodo_t eh uma estrutura interna que representa cada nodo da Lista.
+ * Cada nodo aponta para o proximo e tambem para o anterior.
  * Externamente o usuario da biblioteca nao vai poder usa-la, pois
  * nao pode ter acesso direto ao ponteiro prox.
 */
 typedef struct nodo {
     elemento_t *elemento;
     struct nodo *prox;
+    struct nodo *prev;
 } nodo_t;
 
 /*
  * Representacao da Lista 
 */
 typedef struct lista {
-nodo_t *ini;
+    nodo_t *ini;
 } lista_t;
 
 /* 
@@ -43,15 +45,10 @@ nodo_t *ini;
 */
 lista_t *lista_cria ();
 
-/*
- * Retorna 1 se VAZIA e 0 caso contrario
-*/
-int lista_vazia (lista_t **l);
-
 /* 
  * Destroi a Lista e a aponta para NULL
 */ 
-int lista_destroi (lista_t **l);
+void lista_destroi (lista_t **l);
 
 /* 
  * Adiciona um elemento em ordem de acordo com o valor elemento->chave na Lista. 
@@ -65,5 +62,5 @@ int lista_insere_ordenado (lista_t *l, elemento_t *elemento);
 */
 int lista_remove_ordenado (lista_t *l, elemento_t *elemento);
 
-/*Mostra lista*/
-void mostrar_lista (lista_t *l);
+/* Retorna 1 se a lista esta vazia e 0 caso contrario */
+int lista_vazia (lista_t *l);

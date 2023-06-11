@@ -82,7 +82,7 @@ int main() {
             break;
         
             case 4:
-                mostrar_lista (l);
+                //mostrar_lista (l);
             break;
 
             case 0:

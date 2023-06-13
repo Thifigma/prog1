@@ -5,6 +5,8 @@ FLAGS = -Wall -Werror -Wextra -pedantic
  
 nomeProg = tp1
 
+objetos = libAgenda.o main.o
+
 all: $(nomeProg)	#Define que o arquivo de nomeProg vai receber todos os comandos abaixo.
 
 
@@ -19,4 +21,4 @@ libAgenda.o: libAgenda.h libAgenda.c
 #Limpa os arquivos objeto
 
 clean:
-	rm -f*.o*.gch $(nomeProg)
+	rm -f $(objetos) $(nomeProg)

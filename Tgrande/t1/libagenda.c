@@ -43,12 +43,12 @@ int mes_atual_agenda(agenda_t *agenda)
 void prim_mes_agenda(agenda_t* agenda)
 {
     agenda->mes_atual = 1;
-    agenda->ptr_mes_atual = agenda->mes_atual;
+    agenda->ptr_mes_atual = NULL;
 }
 
 int prox_mes_agenda(agenda_t* agenda)
 {
-    if ( !(agenda->mes_atual = agenda->ptr_mes_atual->prox->mes)){   
+    if ( !(agenda->mes_atual == agenda->ptr_mes_atual->prox->mes)){   
         prim_mes_agenda(agenda);
         agenda->ptr_mes_atual->prox->mes++;
         return agenda->mes_atual;
@@ -87,4 +87,11 @@ char* descricao_compr(compromisso_t* compr)
 int id_compr(compromisso_t* compr)
 {
     return compr->id;
+}
+
+int marca_compromisso_agenda(agenda_t* agenda, int dia, compromisso_t* compr)
+{
+    
+
+
 }

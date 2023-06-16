@@ -24,86 +24,42 @@ int lista_vazia (lista_t **l)
     return 0;
 }
 
-int lista_destroi (lista_t **l)
-{
-    nodo_t *aux = (*l)->ini;
-    nodo_t *prox;
-
-    /*Se estiver vazia nao há o que destruir*/
-    if (lista_vazia(&(*l))){
-        return 0;
-    }
-    
-    while (aux){
-        prox = aux->prox;
-        free (aux->elemento);
-        free(aux);
-        aux = prox;
-    }   
-
-    free ((*l));
-    (*l) = NULL;
-
-    return 1;
-}
-
 int lista_insere_ordenado (lista_t *l, elemento_t *elemento)
 {
-    nodo_t *novo = malloc (sizeof(nodo_t));
+    nodo_t *novo;
     nodo_t *aux;
 
-    if (!(novo ))
+    /*Falha de alocacao. */   
+    if (!(novo = malloc(sizeof(nodo_t)))){
+        printf ("Erro de alocacao! \n");
         return 0;
+    }
 
-    /*Iniica o novo nodo*/
+    /*Falha de alocacao. */
+    if (!(aux = malloc(sizeof(nodo_t)))){
+        printf ("Erro de alocacao! \n");
+        return 0;
+    }
+
+    /*Inicia novo elemento. */
     novo->elemento = elemento;
     novo->prox = NULL;
 
-
-    /*Insere o primeiro elemento no inicio da lista*/
+    /*Se lista vazia meu primeiro nodo
+    *sera o novo nodo. Ou seja, coloca o primeiro e sai fora. */
     if (lista_vazia(&l)){
+        printf ("Primeiro elemento inserido na lista. \n");
         l->ini = novo;
+        printf ("Depois - Chave[%d]\n", l->ini->elemento->chave);
         return 1;
     }
 
-    /*Verificar em qual posição da lista 
-    a chave deve ser inserida */
     aux = l->ini;
-    while (aux->prox && aux->elemento->chave < elemento->chave)
+    while (aux->prox != NULL && aux->elemento->chave < elemento->chave){
+        printf ("E.Aux (%d) < E.e (%d)",aux->elemento->chave, elemento->chave);
         aux = aux->prox;
-    
-    novo->prox = aux->prox;
-    aux->prox = novo;
-
-    free (novo);
-
-    return 1;
-}
-
-int lista_remove_ordenado (lista_t *l, elemento_t *elemento)
-{
-    nodo_t *aux;
-    nodo_t *remover;
-
-    if (lista_vazia(&l)){
-        printf ("Lista vazia! \n");
-        return 0;
     }
 
-    aux = l->ini;
-    while (aux->prox && aux->elemento->chave != elemento->chave)
-        aux = aux->prox;
-    
-    if (!(aux->prox)){
-        printf ("Elemento nao esta na lista. \n");
-        return 0;
-    }
-    
-    remover = aux;
-    aux->prox = aux->prox->prox;
-
-    free(remover->elemento);
-    free (remover); 
-
-    return 1;
+    printf ("Deve ter alguns prints acima. \n");
+    return 0;
 }

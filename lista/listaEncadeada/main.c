@@ -6,9 +6,6 @@ void menu ()
 {
     printf ("-------------------------\n");
     printf ("1. Inserir\n");
-    printf ("2. Remover\n");
-    printf ("3. Destruir\n");
-    printf ("4. Mostrar\n");
     printf ("0. Sair\n");
     printf ("-------------------------\n");
 }
@@ -29,11 +26,7 @@ int testa_lista_cria (lista_t *l)
 
 int main() {
     lista_t *l;
-    elemento_t *elemento = malloc (sizeof(elemento_t));
-    if (!(elemento)){
-      printf ("Erro ao alocar memoria ao elemento. \n");
-      return 0;
-    }    
+    elemento_t elemento;
     
     int op;
 
@@ -55,34 +48,27 @@ int main() {
             case 1:
                 
                 printf ("Leia a chave do elemento: ");
-                scanf ("%d", &elemento->chave);
+                scanf ("%d", &elemento.chave);
 
-                if (lista_insere_ordenado(l, elemento))
-                    printf ("Elemento inserido com sucesso! \n");
-                else
-                    printf ("Erro ao Inserir elemento... \n");    
-            
-            
+                if (!(lista_insere_ordenado(l, &elemento))){
+                    printf ("Era pra ter varios prints acima (elementos x)  \n");                    
+                }            
             break;
 
             case 2:
-
+                /*
                 printf ("Leia a chave do elemento a ser  removido: ");
                 scanf ("%d", &elemento->chave);
 
                 if (lista_remove_ordenado(l, elemento))
-                    printf ("Elemento removido com sucesso! \n");
+                    printf ("Elemento removido com sucesso! \n"); */
             break;
 
             case 3:
-                if (lista_destroi (&l))
+               /* if (lista_destroi (&l))
                     printf ("Lista destruida com sucesso! \n");
                 else
-                    printf ("Lista vazia, nao ha o que destruir... \n");
-            break;
-        
-            case 4:
-                //mostrar_lista (l);
+                    printf ("Lista vazia, nao ha o que destruir... \n"); */
             break;
 
             case 0:

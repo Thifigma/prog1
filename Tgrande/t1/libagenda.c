@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include "libagenda.h"
 
@@ -48,23 +49,11 @@ void prim_mes_agenda(agenda_t* agenda)
 
 int prox_mes_agenda(agenda_t* agenda)
 {
-    if ( !(agenda->mes_atual == agenda->ptr_mes_atual->prox->mes)){   
-        prim_mes_agenda(agenda);
-        agenda->ptr_mes_atual->prox->mes++;
-        return agenda->mes_atual;
-    }   
-    
-    return 0;
+   return 0;
 }
 
 int ant_mes_agenda(agenda_t* agenda)
 {
-    if ( !(agenda->mes_atual = agenda->ptr_mes_atual->ant->mes)){
-        prim_mes_agenda(agenda);
-        agenda->ptr_mes_atual->ant->mes--;
-        return agenda->mes_atual;
-    }
-
     return 0;
 }
 
@@ -91,7 +80,5 @@ int id_compr(compromisso_t* compr)
 
 int marca_compromisso_agenda(agenda_t* agenda, int dia, compromisso_t* compr)
 {
-    
-
-
+    return 0;
 }

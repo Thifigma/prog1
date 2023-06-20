@@ -80,7 +80,7 @@ typedef struct horario_compromisso {
 } horario_compromisso_t;
 
 /* Cria um compromisso:
-   Retorna um compromisso com as informacoes de data de hc, um identificador
+   Retorna o proximo compromisso com as informacoes de data de hc, um identificador
    id e uma string de descricao. A funcao deve alocar um novo espaco de 
    armazenamento para receber a string descricao. */ 
 compromisso_t* cria_compromisso (horario_compromisso_t hc, int id,  char* descricao);

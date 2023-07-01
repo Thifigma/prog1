@@ -13,17 +13,18 @@ agenda_t* cria_agenda()
         free(ag);
         return NULL;
     }
-    ag->mes_atual = 1;
 
+    ag->mes_atual = 1;
+    
     return ag;
 }
 
-/*Funcao axiliar que retorna 0 se agenda estiver vazia*/
+/*Funcao axiliar que retorna 1 se agenda estiver vazia*/
 int agenda_vazia (agenda_t *agenda)
 {
     if (!(agenda->ptr_mes_atual))
-        return 0;
-    return 1;
+        return 1;
+    return 0;
 }
 
 void destroi_compromisso(compromisso_t* compr)
@@ -31,8 +32,7 @@ void destroi_compromisso(compromisso_t* compr)
 
     if (!(compr))
         return;
-    
-    free(compr->descricao);
+
     free(compr);
 }
 
@@ -40,6 +40,7 @@ compromisso_t* prox_compr(compromisso_t* compr)
 {
     if (!(compr->prox))
         return NULL;
+
     return compr->prox;
 }
 
@@ -104,7 +105,11 @@ void prim_mes_agenda(agenda_t* agenda)
 
 int prox_mes_agenda(agenda_t* agenda)
 {
-    
+    if (!(agenda->ptr_mes_atual))
+        if (!(agenda->ptr_mes_atual = malloc(sizeof(mes_t))))
+            return 0;
+
+
     if (!(agenda->ptr_mes_atual->prox)){
         mes_t *novo_mes;
 
@@ -171,7 +176,7 @@ int marca_compromisso_agenda(agenda_t* agenda, int dia, compromisso_t* compr)
     dia_t *dia_anterior;
     dia_t *dia_atual;
 
-    /*Procurando o dia correto*/
+        /*Procurando o dia correto*/
     dia_atual = agenda->ptr_mes_atual->dias;
     dia_anterior = NULL;
     while (dia_atual && dia_atual->dia < dia) {

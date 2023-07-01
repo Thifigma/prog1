@@ -1,20 +1,27 @@
-#Esse makefile deve gerar um executavel agenda 
-#para executar o teste 'firma'.
+    
+CFLAGS = -Wall -std=c99 -g  # flags de compilacao
+LDFLAGS = 
 
 CC = gcc
-CFLAGS = -Wall -std=c99 -g
-LDFLAGS = -lm
 
-all: agenda
+# arquivos-objeto
+	objects = agenda.o libagenda.o  
 
-agenda: agenda.o libagenda.o
-	$(CC) $(LDFLAGS) -o agenda agenda.o libagenda.o
+all: agenda teste
 
-agenda.o: agenda.c libagenda.h
-	$(CC) $(CFLAGS) -c agenda.c
+
+teste: libagenda.o 
+	$(CC) -o teste agenda_teste.o libagenda.o $(LDFLAGS)
+
+agenda: agenda.o libagenda.o 
+	$(CC) -o agenda $(objects) $(LDFLAGS)
 
 libagenda.o: libagenda.c libagenda.h
-	$(CC) $(CFLAGS) -c libagenda.c
+	$(CC) -c $(CFLAGS) libagenda.c
+
+agenda.o: agenda.c
+	$(CC) -c $(CFLAGS) agenda.c
 
 clean:
-	rm -f agenda.o libagenda.o agenda
+	rm -f $(objects) agenda 
+

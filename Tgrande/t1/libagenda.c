@@ -36,7 +36,7 @@ void destroi_compromisso(compromisso_t* compr)
     free(compr);
 }
 
-compromisso_t* prox_compr(compromisso_t* compr)
+compromisso_t* prox_compr(compromisso_t *compr)
 {
     if (!(compr->prox))
         return NULL;
@@ -44,7 +44,7 @@ compromisso_t* prox_compr(compromisso_t* compr)
     return compr->prox;
 }
 
-compromisso_t* compr_agenda(agenda_t* agenda, int dia)
+compromisso_t* compr_agenda(agenda_t *agenda, int dia)
 {
     compromisso_t *ptr_compr;
     dia_t *dia_atual;
@@ -74,7 +74,7 @@ int intersecta (compromisso_t *compr_atual, compromisso_t *compr_anterior, compr
 }
 
 /*vou forcar o usuario a passar a descricao com \0 no final*/
-compromisso_t* cria_compromisso (horario_compromisso_t hc, int id,  char* descricao)
+compromisso_t *cria_compromisso (horario_compromisso_t hc, int id,  char *descricao)
 {
     compromisso_t *compr;
 
@@ -97,13 +97,13 @@ int mes_atual_agenda(agenda_t *agenda)
     return agenda->mes_atual;
 }
 
-void prim_mes_agenda(agenda_t* agenda)
+void prim_mes_agenda(agenda_t *agenda)
 {
     agenda->mes_atual = 1;
     agenda->ptr_mes_atual = NULL;
 }
 
-int prox_mes_agenda(agenda_t* agenda)
+int prox_mes_agenda(agenda_t *agenda)
 {
     if (!(agenda->ptr_mes_atual))
         if (!(agenda->ptr_mes_atual = malloc(sizeof(mes_t))))
@@ -128,7 +128,7 @@ int prox_mes_agenda(agenda_t* agenda)
     return agenda->mes_atual;
 }
 
-int ant_mes_agenda(agenda_t* agenda)
+int ant_mes_agenda(agenda_t *agenda)
 {
     if (!(agenda->ptr_mes_atual->ant)){
         mes_t *novo_mes;
@@ -148,7 +148,7 @@ int ant_mes_agenda(agenda_t* agenda)
     return agenda->mes_atual;
 }
 
-horario_compromisso_t hc_compr(compromisso_t* compr) 
+horario_compromisso_t hc_compr(compromisso_t *compr) 
 {
     horario_compromisso_t hc;
 
@@ -160,17 +160,17 @@ horario_compromisso_t hc_compr(compromisso_t* compr)
     return hc;
 }
 
-char* descricao_compr(compromisso_t* compr)
+char* descricao_compr(compromisso_t *compr)
 {
     return compr->descricao;
 }
 
-int id_compr(compromisso_t* compr)
+int id_compr(compromisso_t *compr)
 {
     return compr->id;
 }
 
-int marca_compromisso_agenda(agenda_t* agenda, int dia, compromisso_t* compr)
+int marca_compromisso_agenda(agenda_t *agenda, int dia, compromisso_t *compr)
 {
     dia_t *novo_dia;
     dia_t *dia_anterior;
@@ -224,7 +224,7 @@ int marca_compromisso_agenda(agenda_t* agenda, int dia, compromisso_t* compr)
     return 1;
 }
 
-int desmarca_compromisso_agenda(agenda_t* agenda, int dia, compromisso_t* compr)
+int desmarca_compromisso_agenda(agenda_t *agenda, int dia, compromisso_t *compr)
 {
     dia_t *dia_atual = agenda->ptr_mes_atual->dias;
 
@@ -255,7 +255,7 @@ int desmarca_compromisso_agenda(agenda_t* agenda, int dia, compromisso_t* compr)
     return 0;
 }
 
-void destroi_agenda(agenda_t* agenda)
+void destroi_agenda(agenda_t *agenda)
 {
     mes_t *mes_atual;
     dia_t *dia_atual;

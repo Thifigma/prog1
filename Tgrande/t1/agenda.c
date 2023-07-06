@@ -11,7 +11,7 @@ int min_trab (compromisso_t *reuniao)
     int tempo_trabalado = (reuniao->fim - reuniao->inicio);
     if (tempo_trabalado < 0)
         tempo_trabalado = 0;
-    return tempo_trabalado;
+    return tempo_trabalado * 60;
 }
 
 
@@ -85,44 +85,34 @@ int main ()
 
     /*Realizar reunioes*/
     for (mes = 1; mes <= 12; mes++){
-
         for(dia = 1; dia <= 31; dia ++){
-
             for(int x = 1; x <= 29; x++){
-                funcionario_t *colaborador = &funcionario[x];
-
                 
-                
+                if ((reuniao = compr_agenda(funcionario[x].ag, dia))){
+                    while (reuniao){
+                    
+                        if (tarefa[id_compr(reuniao)].tempo_conclusao > 0)
+                            tarefa[id_compr(reuniao)].tempo_conclusao -=  min_trab(reuniao) * 
+                                (funcionario[x].exp / 100.0) * ((100 - tarefa[id_compr(reuniao)].dificuldade) / 100);
 
-                for (int T = 0; T < 100; T++){
-                    if (tarefa[T].tempo_conclusao > 0){
-                        tarefa[T].tempo_conclusao -= min_trab(reuniao) * (colaborador->exp / 100.0) * ((100 - tarefa[T].dificuldade) / 100);
-
-                        if (tarefa[T].tempo_conclusao <= 0 ){
-                            tarefa[T].tempo_conclusao = 0;
+                        if (tarefa[id_compr(reuniao)].tempo_conclusao <= 0 ){
+                            tarefa[id_compr(reuniao)].tempo_conclusao = 0;
                             qt_tarefas_realizadas++;
-                            printf ("\tCONCLUIDA\n");
                         }
 
-                        printf ("\tT %.2d D %.2d TCR %.2d\n", T, tarefa[T].dificuldade, tarefa[T].tempo_conclusao);
-                        qt_reunioes_realizadas++;
+                        printf ("\tT %.2d D %.2d TCR %.2d\n", id_compr(reuniao), tarefa[id_compr(reuniao)].dificuldade, 
+                                        tarefa[id_compr(reuniao)].tempo_conclusao);
+                                                        
+                        printf ("%.2d/%.2d F %.2d: %s \n",dia, mes, x, descricao_compr(reuniao));
+
+                        
+                        reuniao = prox_compr(reuniao);
                     }
 
-                    printf ("%.2d/%.2d F %.2d: %s \n",dia, mes, x, descricao);
-
-                    if (colaborador->exp < 100)
-                        colaborador->exp++;                  
                 }
-
             }
         }
     }
-
-    for (int i = 1; i <= 29; i++){
-        destroi_agenda(funcionario[i].ag);
-    }
-
-    free(descricao);
 
     printf("REUNIOES REALIZADAS %d\n", qt_reunioes_realizadas);
     printf("TAREFAS CONCLUIDAS %d\n", qt_tarefas_realizadas);
